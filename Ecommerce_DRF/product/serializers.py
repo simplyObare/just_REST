@@ -3,9 +3,11 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    category = serializers.ReadOnlyField(source="category.category_name")
+
     class Meta:
         model = Product
-        fields = ["name", "cost", "description"]
+        fields = ["product_id", "name", "category", "cost", "description"]
         read_only_fields = ["product_id", "date"]
 
 
