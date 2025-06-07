@@ -1,5 +1,12 @@
 from django.urls import path
-from .views import product_list, messages_list, ProductListView, ProductDetailsView
+from .views import (
+    product_list,
+    messages_list,
+    ProductListView,
+    ProductDetailsView,
+    ProductListMixins,
+    ProductDetailsMixins,
+)
 
 
 urlpatterns = [
@@ -10,5 +17,11 @@ urlpatterns = [
         "class-product-details/<uuid:product_id>/",
         ProductDetailsView.as_view(),
         name="class-product-details",
+    ),
+    path("mixinpath/", ProductListMixins.as_view(), name="mixinpath"),
+    path(
+        "detailsmixinpath/<uuid:product_id>/",
+        ProductDetailsMixins.as_view(),
+        name="detailsmixinpath",
     ),
 ]
