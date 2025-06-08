@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import (
     product_list,
     messages_list,
@@ -8,7 +8,13 @@ from .views import (
     ProductDetailsMixins,
     ProductListGenericsView,
     ProductDetailsGenericsView,
+    ProductViewSets,
 )
+
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r"viewset-products", ProductViewSets, basename="viewset-products")
 
 
 urlpatterns = [
@@ -32,4 +38,5 @@ urlpatterns = [
         ProductDetailsGenericsView.as_view(),
         name="product-detail",
     ),
+    path("", include(router.urls)),
 ]
