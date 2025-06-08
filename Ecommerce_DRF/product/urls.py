@@ -6,6 +6,8 @@ from .views import (
     ProductDetailsView,
     ProductListMixins,
     ProductDetailsMixins,
+    ProductListGenericsView,
+    ProductDetailsGenericsView,
 )
 
 
@@ -23,5 +25,11 @@ urlpatterns = [
         "detailsmixinpath/<uuid:product_id>/",
         ProductDetailsMixins.as_view(),
         name="detailsmixinpath",
+    ),
+    path("generics-products/", ProductListGenericsView.as_view(), name="product-list"),
+    path(
+        "generics-products/<uuid:product_id>/",
+        ProductDetailsGenericsView.as_view(),
+        name="product-detail",
     ),
 ]

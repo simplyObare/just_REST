@@ -108,3 +108,16 @@ class ProductDetailsMixins(
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+# List and create products
+class ProductListGenericsView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+# Retrieve, update, and delete a single product
+class ProductDetailsGenericsView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    lookup_field = "product_id"
